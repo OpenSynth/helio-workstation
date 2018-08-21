@@ -353,12 +353,12 @@ void MainLayout::handleCommandMessage(int commandId)
             project->selectChildOfType<PatternEditorTreeItem>();
         }
         break;
-    case CommandIDs::SwitchToVersioningMode:
-        if (auto *project = findParentProjectOfSelectedNode())
-        {
-            project->selectChildOfType<VersionControlTreeItem>();
-        }
-        break;
+    //case CommandIDs::SwitchToVersioningMode:
+    //    if (auto *project = findParentProjectOfSelectedNode())
+    //    {
+    //        project->selectChildOfType<VersionControlTreeItem>();
+    //    }
+    //    break;
     case CommandIDs::ShowPreviousPage:
         App::Workspace().navigateBackwardIfPossible();
         break;

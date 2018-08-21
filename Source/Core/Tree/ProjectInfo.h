@@ -24,8 +24,8 @@ class ProjectTreeItem;
 #include "Delta.h"
 
 class ProjectInfo :
-    public Serializable,
-    public VCS::TrackedItem
+    public Serializable//,
+    //public VCS::TrackedItem
 {
 public:
 
@@ -49,12 +49,12 @@ public:
     // VCS::TrackedItem
     //===------------------------------------------------------------------===//
 
-    String getVCSName() const override;
+    /*String getVCSName() const override;
     int getNumDeltas() const override;
     VCS::Delta *getDelta(int index) const override;
     ValueTree serializeDeltaData(int deltaIndex) const override;
     VCS::DiffLogic *getDiffLogic() const override;
-    void resetStateTo(const VCS::TrackedItem &newState) override;
+    void resetStateTo(const VCS::TrackedItem &newState) override;*/
 
     //===------------------------------------------------------------------===//
     // Serializable
@@ -68,7 +68,7 @@ public:
     // Deltas
     //===------------------------------------------------------------------===//
 
-    ValueTree serializeLicenseDelta() const;
+    /*ValueTree serializeLicenseDelta() const;
     ValueTree serializeFullNameDelta() const;
     ValueTree serializeAuthorDelta() const;
     ValueTree serializeDescriptionDelta() const;
@@ -76,12 +76,12 @@ public:
     void resetLicenseDelta(const ValueTree &state);
     void resetFullNameDelta(const ValueTree &state);
     void resetAuthorDelta(const ValueTree &state);
-    void resetDescriptionDelta(const ValueTree &state);
+    void resetDescriptionDelta(const ValueTree &state);*/
 
 private:
 
-    ScopedPointer<VCS::ProjectInfoDiffLogic> vcsDiffLogic;
-    OwnedArray<VCS::Delta> deltas;
+    // ScopedPointer<VCS::ProjectInfoDiffLogic> vcsDiffLogic;
+    // OwnedArray<VCS::Delta> deltas;
 
 private:
 

@@ -28,7 +28,7 @@ AutomationTrackTreeItem::AutomationTrackTreeItem(const String &name) :
     this->sequence = new AutomationSequence(*this, *this);
     this->pattern = new Pattern(*this, *this);
 
-    this->vcsDiffLogic = new VCS::AutomationTrackDiffLogic(*this);
+    /*this->vcsDiffLogic = new VCS::AutomationTrackDiffLogic(*this);
 
     using namespace Serialization::VCS;
     this->deltas.add(new VCS::Delta({}, MidiTrackDeltas::trackPath));
@@ -37,7 +37,12 @@ AutomationTrackTreeItem::AutomationTrackTreeItem(const String &name) :
     this->deltas.add(new VCS::Delta({}, MidiTrackDeltas::trackInstrument));
     this->deltas.add(new VCS::Delta({}, MidiTrackDeltas::trackController));
     this->deltas.add(new VCS::Delta({}, AutoSequenceDeltas::eventsAdded));
-    this->deltas.add(new VCS::Delta({}, PatternDeltas::clipsAdded));
+    this->deltas.add(new VCS::Delta({}, PatternDeltas::clipsAdded));*/
+    
+#if HELIO_MOBILE
+    // для мобил выключаю автоматизации нафиг, неюзабельно будет совершенно
+    this->setVisible(false);
+#endif
 }
 
 Image AutomationTrackTreeItem::getIcon() const noexcept
@@ -49,6 +54,7 @@ Image AutomationTrackTreeItem::getIcon() const noexcept
 // VCS::TrackedItem
 //===----------------------------------------------------------------------===//
 
+/*
 int AutomationTrackTreeItem::getNumDeltas() const
 {
     return this->deltas.size();
@@ -166,7 +172,7 @@ void AutomationTrackTreeItem::resetStateTo(const VCS::TrackedItem &newState)
         }
     }
 }
-
+*/
 
 //===----------------------------------------------------------------------===//
 // Serializable
@@ -176,7 +182,7 @@ ValueTree AutomationTrackTreeItem::serialize() const
 {
     ValueTree tree(Serialization::Core::treeItem);
 
-    this->serializeVCSUuid(tree);
+    // this->serializeVCSUuid(tree);
 
     tree.setProperty(Serialization::Core::treeItemType, this->type, nullptr);
     tree.setProperty(Serialization::Core::treeItemName, this->name, nullptr);
@@ -195,7 +201,7 @@ void AutomationTrackTreeItem::deserialize(const ValueTree &tree)
 {
     this->reset();
 
-    this->deserializeVCSUuid(tree);
+    // this->deserializeVCSUuid(tree);
     this->deserializeTrackProperties(tree);
 
     forEachValueTreeChildWithType(tree, e, Serialization::Midi::automation)
@@ -218,7 +224,7 @@ void AutomationTrackTreeItem::deserialize(const ValueTree &tree)
 //===----------------------------------------------------------------------===//
 
 // TODO move this in MidiTrackTreeItem
-
+/*
 ValueTree AutomationTrackTreeItem::serializePathDelta() const
 {
     using namespace Serialization::VCS;
@@ -330,3 +336,4 @@ void AutomationTrackTreeItem::resetEventsDelta(const ValueTree &state)
 
     this->getSequence()->updateBeatRange(false);
 }
+*/

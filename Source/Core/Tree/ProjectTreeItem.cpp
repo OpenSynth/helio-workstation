@@ -89,10 +89,10 @@ void ProjectTreeItem::initialize()
     this->recentFilesList = &App::Workspace().getRecentFilesList();
     
     this->info = new ProjectInfo(*this);
-    this->vcsItems.add(this->info);
+    //this->vcsItems.add(this->info);
     
     this->timeline = new ProjectTimeline(*this, "Project Timeline");
-    this->vcsItems.add(this->timeline);
+    //this->vcsItems.add(this->timeline);
 
     this->transport->seekToPosition(0.0);
 
@@ -133,7 +133,7 @@ ProjectTreeItem::~ProjectTreeItem()
 
 void ProjectTreeItem::deletePermanently()
 {
-    if (auto vcsTreeItem = this->findChildOfType<VersionControlTreeItem>())
+    if (false)//auto vcsTreeItem = this->findChildOfType<VersionControlTreeItem>())
     {
         // TODO
         //vcsTreeItem->deletePermanentlyFromRemoteRepo();
@@ -154,13 +154,13 @@ void ProjectTreeItem::deletePermanently()
 
 String ProjectTreeItem::getId() const
 {
-    VersionControlTreeItem *vcsTreeItem =
-        this->findChildOfType<VersionControlTreeItem>();
+    //VersionControlTreeItem *vcsTreeItem =
+    //    this->findChildOfType<VersionControlTreeItem>();
 
-    if (vcsTreeItem != nullptr)
-    {
-        return vcsTreeItem->getId();
-    }
+    //if (vcsTreeItem != nullptr)
+    //{
+    //    return vcsTreeItem->getId();
+    //}
 
     return {};
 }
@@ -503,9 +503,9 @@ void ProjectTreeItem::deserialize(const ValueTree &tree)
 void ProjectTreeItem::reset()
 {
     this->transport->seekToPosition(0.f);
-    this->vcsItems.clear();
-    this->vcsItems.add(this->info);
-    this->vcsItems.add(this->timeline);
+    //this->vcsItems.clear();
+    //this->vcsItems.add(this->info);
+    //this->vcsItems.add(this->timeline);
     this->undoStack->clearUndoHistory();
     TreeItem::reset();
     // TODO test if we need that really (I suggest we don't):
@@ -669,11 +669,11 @@ void ProjectTreeItem::broadcastAddTrack(MidiTrack *const track)
 {
     this->isTracksCacheOutdated = true;
 
-    if (auto *tracked = dynamic_cast<VCS::TrackedItem *>(track))
-    {
-        const ScopedWriteLock lock(this->vcsInfoLock);
-        this->vcsItems.addIfNotAlreadyThere(tracked);
-    }
+    // if (auto *tracked = dynamic_cast<VCS::TrackedItem *>(track))
+    // {
+    //     const ScopedWriteLock lock(this->vcsInfoLock);
+    //     this->vcsItems.addIfNotAlreadyThere(tracked);
+    // }
 
     this->changeListeners.call(&ProjectListener::onAddTrack, track);
     this->sendChangeMessage();
@@ -683,11 +683,11 @@ void ProjectTreeItem::broadcastRemoveTrack(MidiTrack *const track)
 {
     this->isTracksCacheOutdated = true;
 
-    if (auto *tracked = dynamic_cast<VCS::TrackedItem *>(track))
-    {
-        const ScopedWriteLock lock(this->vcsInfoLock);
-        this->vcsItems.removeAllInstancesOf(tracked);
-    }
+    // if (auto *tracked = dynamic_cast<VCS::TrackedItem *>(track))
+    // {
+    //     const ScopedWriteLock lock(this->vcsInfoLock);
+    //     this->vcsItems.removeAllInstancesOf(tracked);
+    // }
 
     this->changeListeners.call(&ProjectListener::onRemoveTrack, track);
     this->sendChangeMessage();
@@ -893,101 +893,101 @@ MidiSequence *ProjectTreeItem::getSequenceByTrackId(const String &trackId)
 // VCS::TrackedItemsSource
 //===----------------------------------------------------------------------===//
 
-String ProjectTreeItem::getVCSName() const
-{
-    return this->getName();
-}
+// String ProjectTreeItem::getVCSName() const
+// {
+//     return this->getName();
+// }
 
-int ProjectTreeItem::getNumTrackedItems()
-{
-    const ScopedReadLock lock(this->vcsInfoLock);
-    return this->vcsItems.size();
-}
+// int ProjectTreeItem::getNumTrackedItems()
+// {
+//     const ScopedReadLock lock(this->vcsInfoLock);
+//     return this->vcsItems.size();
+// }
 
-VCS::TrackedItem *ProjectTreeItem::getTrackedItem(int index)
-{
-    const ScopedReadLock lock(this->vcsInfoLock);
-    return const_cast<VCS::TrackedItem *>(this->vcsItems[index]);
-}
+// VCS::TrackedItem *ProjectTreeItem::getTrackedItem(int index)
+// {
+//     const ScopedReadLock lock(this->vcsInfoLock);
+//     return const_cast<VCS::TrackedItem *>(this->vcsItems[index]);
+// }
 
-VCS::TrackedItem *ProjectTreeItem::initTrackedItem(const Identifier &type,
-    const Uuid &id, const VCS::TrackedItem &newState)
-{
-    if (type == Serialization::Core::pianoTrack)
-    {
-        auto *track = new PianoTrackTreeItem("");
-        track->setVCSUuid(id);
-        this->addChildTreeItem(track, -1, false);
-        // add explicitly, since we aren't going to receive a notification:
-        this->isTracksCacheOutdated = true;
-        this->vcsItems.addIfNotAlreadyThere(track);
-        track->resetStateTo(newState);
-        return track;
-    }
-    if (type == Serialization::Core::automationTrack)
-    {
-        auto *track = new AutomationTrackTreeItem("");
-        track->setVCSUuid(id);
-        this->addChildTreeItem(track, -1, false);
-        this->isTracksCacheOutdated = true;
-        this->vcsItems.addIfNotAlreadyThere(track);
-        track->resetStateTo(newState);
-        return track;
-    }
-    else if (type == Serialization::Core::projectInfo)
-    {
-        this->info->setVCSUuid(id);
-        this->info->resetStateTo(newState);
-        return this->info;
-    }
-    else if (type == Serialization::Core::projectTimeline)
-    {
-        this->timeline->setVCSUuid(id);
-        this->timeline->resetStateTo(newState);
-        return this->timeline;
-    }
+// VCS::TrackedItem *ProjectTreeItem::initTrackedItem(const Identifier &type,
+//     const Uuid &id, const VCS::TrackedItem &newState)
+// {
+//     if (type == Serialization::Core::pianoTrack)
+//     {
+//         auto *track = new PianoTrackTreeItem("");
+//         track->setVCSUuid(id);
+//         this->addChildTreeItem(track, -1, false);
+//         // add explicitly, since we aren't going to receive a notification:
+//         this->isTracksCacheOutdated = true;
+//         this->vcsItems.addIfNotAlreadyThere(track);
+//         track->resetStateTo(newState);
+//         return track;
+//     }
+//     if (type == Serialization::Core::automationTrack)
+//     {
+//         auto *track = new AutomationTrackTreeItem("");
+//         track->setVCSUuid(id);
+//         this->addChildTreeItem(track, -1, false);
+//         this->isTracksCacheOutdated = true;
+//         this->vcsItems.addIfNotAlreadyThere(track);
+//         track->resetStateTo(newState);
+//         return track;
+//     }
+//     else if (type == Serialization::Core::projectInfo)
+//     {
+//         this->info->setVCSUuid(id);
+//         this->info->resetStateTo(newState);
+//         return this->info;
+//     }
+//     else if (type == Serialization::Core::projectTimeline)
+//     {
+//         this->timeline->setVCSUuid(id);
+//         this->timeline->resetStateTo(newState);
+//         return this->timeline;
+//     }
     
-    return nullptr;
-}
+//     return nullptr;
+// }
 
-bool ProjectTreeItem::deleteTrackedItem(VCS::TrackedItem *item)
-{
-    if (auto *treeItem = dynamic_cast<MidiTrackTreeItem *>(item))
-    {
-        TreeItem::deleteItem(treeItem, false); // don't broadcastRemoveTrack
-        this->vcsItems.removeAllInstancesOf(item);
-        this->isTracksCacheOutdated = true;
-        return true;
-    }
+// bool ProjectTreeItem::deleteTrackedItem(VCS::TrackedItem *item)
+// {
+//     if (auto *treeItem = dynamic_cast<MidiTrackTreeItem *>(item))
+//     {
+//         TreeItem::deleteItem(treeItem, false); // don't broadcastRemoveTrack
+//         this->vcsItems.removeAllInstancesOf(item);
+//         this->isTracksCacheOutdated = true;
+//         return true;
+//     }
 
-    return false;
-}
+//     return false;
+// }
 
-void ProjectTreeItem::onResetState()
-{
-    this->broadcastReloadProjectContent();
-    this->broadcastChangeProjectBeatRange();
-}
+// void ProjectTreeItem::onResetState()
+// {
+//     this->broadcastReloadProjectContent();
+//     this->broadcastChangeProjectBeatRange();
+// }
 
 //===----------------------------------------------------------------------===//
 // ChangeListener
 //===----------------------------------------------------------------------===//
 
-void ProjectTreeItem::changeListenerCallback(ChangeBroadcaster *source)
-{
-    if (VersionControl *vcs = dynamic_cast<VersionControl *>(source))
-    {
-        //Logger::writeToLog("ProjectTreeItem :: vcs changed, saving " + vcs->getParentName());
-        DocumentOwner::sendChangeMessage();
-        //this->getDocument()->save();
-        
-        // FIXME! a bug reproduced in iOS when callin forceSave() here:
-        // VCS start rebuilding diff after a commit in a separate thread,
-        // at the same time main thread saves the project and flushes the VCS pack,
-        // and eventually the pack cannot get delta data.
-        //this->getDocument()->forceSave();
-    }
-}
+//void ProjectTreeItem::changeListenerCallback(ChangeBroadcaster *source)
+//{
+//    if (VersionControl *vcs = dynamic_cast<VersionControl *>(source))
+//    {
+//        //Logger::writeToLog("ProjectTreeItem :: vcs changed, saving " + vcs->getParentName());
+//        DocumentOwner::sendChangeMessage();
+//        //this->getDocument()->save();
+//        
+//        // FIXME! a bug reproduced in iOS when callin forceSave() here:
+//        // VCS start rebuilding diff after a commit in a separate thread,
+//        // at the same time main thread saves the project and flushes the VCS pack,
+//        // and eventually the pack cannot get delta data.
+//        //this->getDocument()->forceSave();
+//    }
+//}
 
 void ProjectTreeItem::rebuildTracksRefsCacheIfNeeded() const
 {

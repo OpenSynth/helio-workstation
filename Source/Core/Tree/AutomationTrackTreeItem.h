@@ -32,11 +32,11 @@ public:
     // VCS::TrackedItem
     //===------------------------------------------------------------------===//
 
-    int getNumDeltas() const override;
+    /*int getNumDeltas() const override;
     VCS::Delta *getDelta(int index) const override;
     ValueTree serializeDeltaData(int deltaIndex) const override;
     VCS::DiffLogic *getDiffLogic() const override;
-    void resetStateTo(const VCS::TrackedItem &newState) override;
+    void resetStateTo(const VCS::TrackedItem &newState) override;*/
 
     //===------------------------------------------------------------------===//
     // Serializable
@@ -49,7 +49,7 @@ public:
     // Deltas
     //===------------------------------------------------------------------===//
 
-    ValueTree serializePathDelta() const;
+    /*ValueTree serializePathDelta() const;
     ValueTree serializeMuteDelta() const;
     ValueTree serializeColourDelta() const;
     ValueTree serializeInstrumentDelta() const;
@@ -61,11 +61,11 @@ public:
     void resetColourDelta(const ValueTree &state);
     void resetInstrumentDelta(const ValueTree &state);
     void resetControllerDelta(const ValueTree &state);
-    void resetEventsDelta(const ValueTree &state);
+    void resetEventsDelta(const ValueTree &state);*/
 
 private:
 
-    ScopedPointer<VCS::AutomationTrackDiffLogic> vcsDiffLogic;
-    OwnedArray<VCS::Delta> deltas;
+    //ScopedPointer<VCS::AutomationTrackDiffLogic> vcsDiffLogic;
+    //OwnedArray<VCS::Delta> deltas;
 
 };

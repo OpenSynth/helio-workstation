@@ -74,7 +74,7 @@ void RootTreeItem::importMidi(const File &file)
 {
     ProjectTreeItem *project = new ProjectTreeItem(file.getFileNameWithoutExtension());
     this->addChildTreeItem(project);
-    this->addVCS(project);
+    //this->addVCS(project);
     project->importMidi(file);
 }
 
@@ -98,8 +98,8 @@ void RootTreeItem::checkoutProject(const String &name, const String &id, const S
     auto newProject = new ProjectTreeItem(name);
     this->addChildTreeItem(newProject);
     
-    auto vcs = new VersionControlTreeItem(id, key);
-    newProject->addChildTreeItem(vcs);
+    //auto vcs = new VersionControlTreeItem(id, key);
+    //newProject->addChildTreeItem(vcs);
     
     // TODO
     //vcs->checkout();
@@ -175,7 +175,7 @@ ProjectTreeItem *RootTreeItem::addDefaultProject(const File &projectLocation)
 
 ProjectTreeItem *RootTreeItem::createDefaultProjectChildren(ProjectTreeItem *newProject)
 {
-    this->addVCS(newProject);
+    //this->addVCS(newProject);
     newProject->addChildTreeItem(new PatternEditorTreeItem());
 
     this->addPianoTrack(newProject, "Arps")->setTrackColour(Colours::orangered, true);
@@ -197,18 +197,18 @@ ProjectTreeItem *RootTreeItem::createDefaultProjectChildren(ProjectTreeItem *new
     return newProject;
 }
 
-VersionControlTreeItem *RootTreeItem::addVCS(TreeItem *parent)
-{
-    auto vcs = new VersionControlTreeItem();
-    parent->addChildTreeItem(vcs);
-
-    // при создании рутовой ноды vcs, туда надо первым делом коммитить пустой ProjectInfo,
-    // чтобы оной в списке изменений всегда показывался как измененный (не добавленный)
-    // т.к. удалить его нельзя. и смущать юзера подобными надписями тоже не айс.
-    vcs->commitProjectInfo();
-
-    return vcs;
-}
+//VersionControlTreeItem *RootTreeItem::addVCS(TreeItem *parent)
+//{
+//    auto vcs = new VersionControlTreeItem();
+//    parent->addChildTreeItem(vcs);
+//
+//    // при создании рутовой ноды vcs, туда надо первым делом коммитить пустой ProjectInfo,
+//    // чтобы оной в списке изменений всегда показывался как измененный (не добавленный)
+//    // т.к. удалить его нельзя. и смущать юзера подобными надписями тоже не айс.
+//    vcs->commitProjectInfo();
+//
+//    return vcs;
+//}
 
 TrackGroupTreeItem *RootTreeItem::addGroup(TreeItem *parent, const String &name)
 {

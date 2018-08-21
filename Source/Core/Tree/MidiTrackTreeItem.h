@@ -31,8 +31,8 @@ class InstrumentDescription;
 class MidiTrackTreeItem :
     public TreeItem,
     public MidiTrack,
-    public ProjectEventDispatcher,
-    public VCS::TrackedItem
+    public ProjectEventDispatcher// ,
+    // public VCS::TrackedItem
 {
 public:
 
@@ -52,9 +52,9 @@ public:
     // VCS::TrackedItem
     //===------------------------------------------------------------------===//
 
-    String getVCSName() const override;
+    /*String getVCSName() const override;
     ValueTree serializeClipsDelta() const;
-    void resetClipsDelta(const ValueTree &state);
+    void resetClipsDelta(const ValueTree &state);*/
 
     //===------------------------------------------------------------------===//
     // MidiTrack

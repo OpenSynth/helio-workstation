@@ -57,7 +57,7 @@ void TreeItemChildrenSerializer::deserializeChildren(TreeItem &parentItem, const
         else if (type == Core::automationTrack) { child = new AutomationTrackTreeItem(""); }
         else if (type == Core::instrumentsList) { child = new OrchestraPitTreeItem(); }
         else if (type == Core::instrumentRoot)  { child = new InstrumentTreeItem(); }
-        else if (type == Core::versionControl)  { child = new VersionControlTreeItem(); }
+        //else if (type == Core::versionControl)  { child = new VersionControlTreeItem(); }
         else if (type == Core::patternSet)      { child = new PatternEditorTreeItem(); }
 
         if (child != nullptr)

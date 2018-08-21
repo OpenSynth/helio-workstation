@@ -39,7 +39,7 @@ PianoTrackTreeItem::PianoTrackTreeItem(const String &name) :
     // this will be set by transport
     //this->layer->setInstrumentId(this->workspace.getDefaultInstrument()->getInstrumentID());
 
-    this->vcsDiffLogic = new VCS::PianoTrackDiffLogic(*this);
+    /*this->vcsDiffLogic = new VCS::PianoTrackDiffLogic(*this);
 
     using namespace Serialization::VCS;
     this->deltas.add(new VCS::Delta({}, MidiTrackDeltas::trackPath));
@@ -47,7 +47,7 @@ PianoTrackTreeItem::PianoTrackTreeItem(const String &name) :
     this->deltas.add(new VCS::Delta({}, MidiTrackDeltas::trackColour));
     this->deltas.add(new VCS::Delta({}, MidiTrackDeltas::trackInstrument));
     this->deltas.add(new VCS::Delta({}, PianoSequenceDeltas::notesAdded));
-    this->deltas.add(new VCS::Delta({}, PatternDeltas::clipsAdded));
+    this->deltas.add(new VCS::Delta({}, PatternDeltas::clipsAdded));*/
 }
 
 Image PianoTrackTreeItem::getIcon() const noexcept
@@ -55,10 +55,12 @@ Image PianoTrackTreeItem::getIcon() const noexcept
     return Icons::findByName(Icons::pianoTrack, HEADLINE_ICON_SIZE);
 }
 
+/*
 int PianoTrackTreeItem::getNumDeltas() const
 {
     return this->deltas.size();
 }
+*/
 
 void PianoTrackTreeItem::selectAllPianoSiblings(PianoTrackTreeItem *layerItem)
 {
@@ -82,6 +84,7 @@ void PianoTrackTreeItem::selectAllPianoSiblings(PianoTrackTreeItem *layerItem)
 // VCS stuff
 //===----------------------------------------------------------------------===//
 
+/*
 VCS::Delta *PianoTrackTreeItem::getDelta(int index) const
 {
     using namespace Serialization::VCS;
@@ -189,7 +192,7 @@ void PianoTrackTreeItem::resetStateTo(const VCS::TrackedItem &newState)
         }
     }
 }
-
+*/
 
 //===----------------------------------------------------------------------===//
 // Serializable
@@ -199,7 +202,7 @@ ValueTree PianoTrackTreeItem::serialize() const
 {
     ValueTree tree(Serialization::Core::treeItem);
 
-    this->serializeVCSUuid(tree);
+    // this->serializeVCSUuid(tree);
 
     tree.setProperty(Serialization::Core::treeItemType, this->type, nullptr);
     tree.setProperty(Serialization::Core::treeItemName, this->name, nullptr);
@@ -218,7 +221,7 @@ void PianoTrackTreeItem::deserialize(const ValueTree &tree)
 {
     this->reset();
 
-    this->deserializeVCSUuid(tree);
+    // this->deserializeVCSUuid(tree);
     this->deserializeTrackProperties(tree);
 
     forEachValueTreeChildWithType(tree, e, Serialization::Midi::track)
@@ -240,6 +243,7 @@ void PianoTrackTreeItem::deserialize(const ValueTree &tree)
 // Deltas
 //===----------------------------------------------------------------------===//
 
+/*
 ValueTree PianoTrackTreeItem::serializePathDelta() const
 {
     using namespace Serialization::VCS;
@@ -334,3 +338,4 @@ void PianoTrackTreeItem::resetEventsDelta(const ValueTree &state)
 
     this->getSequence()->updateBeatRange(false);
 }
+*/

@@ -89,11 +89,11 @@ ProjectTimeline::ProjectTimeline(ProjectTreeItem &parentProject, String trackNam
     this->keySignaturesTrack = new KeySignaturesTrack(*this);
     this->keySignaturesSequence = new KeySignaturesSequence(*this->keySignaturesTrack, *this);
 
-    using namespace Serialization::VCS;
-    this->vcsDiffLogic = new VCS::ProjectTimelineDiffLogic(*this);
-    this->deltas.add(new VCS::Delta({}, ProjectTimelineDeltas::annotationsAdded));
-    this->deltas.add(new VCS::Delta({}, ProjectTimelineDeltas::keySignaturesAdded));
-    this->deltas.add(new VCS::Delta({}, ProjectTimelineDeltas::timeSignaturesAdded));
+    //using namespace Serialization::VCS;
+    //this->vcsDiffLogic = new VCS::ProjectTimelineDiffLogic(*this);
+    //this->deltas.add(new VCS::Delta({}, ProjectTimelineDeltas::annotationsAdded));
+    //this->deltas.add(new VCS::Delta({}, ProjectTimelineDeltas::keySignaturesAdded));
+    //this->deltas.add(new VCS::Delta({}, ProjectTimelineDeltas::timeSignaturesAdded));
 
     this->project.broadcastAddTrack(this->annotationsTrack);
     this->project.broadcastAddTrack(this->keySignaturesTrack);
@@ -126,92 +126,92 @@ MidiTrack *ProjectTimeline::getKeySignatures() const noexcept
 // VCS::TrackedItem
 //===----------------------------------------------------------------------===//
 
-String ProjectTimeline::getVCSName() const
-{
-    return "vcs::items::timeline";
-}
-
-int ProjectTimeline::getNumDeltas() const
-{
-    return this->deltas.size();
-}
-
-VCS::Delta *ProjectTimeline::getDelta(int index) const
-{
-    using namespace Serialization::VCS;
-    if (this->deltas[index]->hasType(ProjectTimelineDeltas::annotationsAdded))
-    {
-        const int numEvents = this->annotationsSequence->size();
-        this->deltas[index]->setDescription(VCS::DeltaDescription("{x} annotations", numEvents));
-    }
-    else if (this->deltas[index]->hasType(ProjectTimelineDeltas::timeSignaturesAdded))
-    {
-        const int numEvents = this->timeSignaturesSequence->size();
-        this->deltas[index]->setDescription(VCS::DeltaDescription("{x} time signatures", numEvents));
-    }
-    else if (this->deltas[index]->hasType(ProjectTimelineDeltas::keySignaturesAdded))
-    {
-        const int numEvents = this->keySignaturesSequence->size();
-        this->deltas[index]->setDescription(VCS::DeltaDescription("{x} key signatures", numEvents));
-    }
-
-    return this->deltas[index];
-}
-
-ValueTree ProjectTimeline::serializeDeltaData(int deltaIndex) const
-{
-    using namespace Serialization::VCS;
-    if (this->deltas[deltaIndex]->hasType(ProjectTimelineDeltas::annotationsAdded))
-    {
-        return this->serializeAnnotationsDelta();
-    }
-    else if (this->deltas[deltaIndex]->hasType(ProjectTimelineDeltas::timeSignaturesAdded))
-    {
-        return this->serializeTimeSignaturesDelta();
-    }
-    else if (this->deltas[deltaIndex]->hasType(ProjectTimelineDeltas::keySignaturesAdded))
-    {
-        return this->serializeKeySignaturesDelta();
-    }
-
-    jassertfalse;
-    return {};
-}
-
-VCS::DiffLogic *ProjectTimeline::getDiffLogic() const
-{
-    return this->vcsDiffLogic;
-}
-
-void ProjectTimeline::resetStateTo(const VCS::TrackedItem &newState)
-{
-    using namespace Serialization::VCS;
-    bool annotationsChanged = false;
-    bool timeSignaturesChanged = false;
-    bool keySignaturesChanged = false;
-
-    for (int i = 0; i < newState.getNumDeltas(); ++i)
-    {
-        const VCS::Delta *newDelta = newState.getDelta(i);
-        const auto newDeltaData(newState.serializeDeltaData(i));
-        
-        if (newDelta->hasType(ProjectTimelineDeltas::annotationsAdded))
-        {
-            this->resetAnnotationsDelta(newDeltaData);
-            annotationsChanged = true;
-        }
-        else if (newDelta->hasType(ProjectTimelineDeltas::timeSignaturesAdded))
-        {
-            this->resetTimeSignaturesDelta(newDeltaData);
-            timeSignaturesChanged = true;
-        }
-        else if (newDelta->hasType(ProjectTimelineDeltas::keySignaturesAdded))
-        {
-            this->resetKeySignaturesDelta(newDeltaData);
-            keySignaturesChanged = true;
-        }
-    }
-}
+//String ProjectTimeline::getVCSName() const
+//{
+//    return "vcs::items::timeline";
+//}
+//
+//int ProjectTimeline::getNumDeltas() const
+//{
+//    return this->deltas.size();
+//}
+//
+//VCS::Delta *ProjectTimeline::getDelta(int index) const
+//{
+//    using namespace Serialization::VCS;
+//    if (this->deltas[index]->hasType(ProjectTimelineDeltas::annotationsAdded))
+//    {
+//        const int numEvents = this->annotationsSequence->size();
+//        this->deltas[index]->setDescription(VCS::DeltaDescription("{x} annotations", numEvents));
+//    }
+//    else if (this->deltas[index]->hasType(ProjectTimelineDeltas::timeSignaturesAdded))
+//    {
+//        const int numEvents = this->timeSignaturesSequence->size();
+//        this->deltas[index]->setDescription(VCS::DeltaDescription("{x} time signatures", numEvents));
+//    }
+//    else if (this->deltas[index]->hasType(ProjectTimelineDeltas::keySignaturesAdded))
+//    {
+//        const int numEvents = this->keySignaturesSequence->size();
+//        this->deltas[index]->setDescription(VCS::DeltaDescription("{x} key signatures", numEvents));
+//    }
+//
+//    return this->deltas[index];
+//}
+//
+//ValueTree ProjectTimeline::serializeDeltaData(int deltaIndex) const
+//{
+//    using namespace Serialization::VCS;
+//    if (this->deltas[deltaIndex]->hasType(ProjectTimelineDeltas::annotationsAdded))
+//    {
+//        return this->serializeAnnotationsDelta();
+//    }
+//    else if (this->deltas[deltaIndex]->hasType(ProjectTimelineDeltas::timeSignaturesAdded))
+//    {
+//        return this->serializeTimeSignaturesDelta();
+//    }
+//    else if (this->deltas[deltaIndex]->hasType(ProjectTimelineDeltas::keySignaturesAdded))
+//    {
+//        return this->serializeKeySignaturesDelta();
+//    }
+//
+//    jassertfalse;
+//    return {};
+//}
+//
+//VCS::DiffLogic *ProjectTimeline::getDiffLogic() const
+//{
+//    return this->vcsDiffLogic;
+//}
+//
+//void ProjectTimeline::resetStateTo(const VCS::TrackedItem &newState)
+//{
+//    using namespace Serialization::VCS;
+//    bool annotationsChanged = false;
+//    bool timeSignaturesChanged = false;
+//    bool keySignaturesChanged = false;
+//
+//    for (int i = 0; i < newState.getNumDeltas(); ++i)
+//    {
+//        const VCS::Delta *newDelta = newState.getDelta(i);
+//        const auto newDeltaData(newState.serializeDeltaData(i));
+//        
+//        if (newDelta->hasType(ProjectTimelineDeltas::annotationsAdded))
+//        {
+//            this->resetAnnotationsDelta(newDeltaData);
+//            annotationsChanged = true;
+//        }
+//        else if (newDelta->hasType(ProjectTimelineDeltas::timeSignaturesAdded))
+//        {
+//            this->resetTimeSignaturesDelta(newDeltaData);
+//            timeSignaturesChanged = true;
+//        }
+//        else if (newDelta->hasType(ProjectTimelineDeltas::keySignaturesAdded))
+//        {
+//            this->resetKeySignaturesDelta(newDeltaData);
+//            keySignaturesChanged = true;
+//        }
+//    }
+//}
 
 
 //===----------------------------------------------------------------------===//
@@ -275,9 +275,9 @@ void ProjectTimeline::reset()
 
 ValueTree ProjectTimeline::serialize() const
 {
-    ValueTree tree(this->vcsDiffLogic->getType());
+    ValueTree tree(Serialization::Core::projectTimeline);
 
-    this->serializeVCSUuid(tree);
+    //this->serializeVCSUuid(tree);
 
     tree.setProperty(Serialization::Core::annotationsTrackId,
         this->annotationsTrackId, nullptr);
@@ -299,15 +299,15 @@ void ProjectTimeline::deserialize(const ValueTree &tree)
 {
     this->reset();
     
-    const auto root = tree.hasType(this->vcsDiffLogic->getType()) ?
-        tree : tree.getChildWithName(this->vcsDiffLogic->getType());
+    const auto root = tree.hasType(Serialization::Core::projectTimeline) ?
+        tree : tree.getChildWithName(Serialization::Core::projectTimeline);
     
     if (!root.isValid())
     {
         return;
     }
 
-    this->deserializeVCSUuid(root);
+    //this->deserializeVCSUuid(root);
 
     this->annotationsTrackId =
         root.getProperty(Serialization::Core::annotationsTrackId,
@@ -347,80 +347,80 @@ void ProjectTimeline::deserialize(const ValueTree &tree)
 // Deltas
 //===----------------------------------------------------------------------===//
 
-ValueTree ProjectTimeline::serializeAnnotationsDelta() const
-{
-    ValueTree tree(Serialization::VCS::ProjectTimelineDeltas::annotationsAdded);
+// ValueTree ProjectTimeline::serializeAnnotationsDelta() const
+// {
+//     ValueTree tree(Serialization::VCS::ProjectTimelineDeltas::annotationsAdded);
 
-    for (int i = 0; i < this->annotationsSequence->size(); ++i)
-    {
-        const MidiEvent *event = this->annotationsSequence->getUnchecked(i);
-        tree.appendChild(event->serialize(), nullptr);
-    }
+//     for (int i = 0; i < this->annotationsSequence->size(); ++i)
+//     {
+//         const MidiEvent *event = this->annotationsSequence->getUnchecked(i);
+//         tree.appendChild(event->serialize(), nullptr);
+//     }
 
-    return tree;
-}
+//     return tree;
+// }
 
-void ProjectTimeline::resetAnnotationsDelta(const ValueTree &state)
-{
-    jassert(state.hasType(Serialization::VCS::ProjectTimelineDeltas::annotationsAdded));
-    this->annotationsSequence->reset();
+// void ProjectTimeline::resetAnnotationsDelta(const ValueTree &state)
+// {
+//     jassert(state.hasType(Serialization::VCS::ProjectTimelineDeltas::annotationsAdded));
+//     this->annotationsSequence->reset();
 
-    forEachValueTreeChildWithType(state, e, Serialization::Midi::annotation)
-    {
-        this->annotationsSequence->checkoutEvent<AnnotationEvent>(e);
-    }
+//     forEachValueTreeChildWithType(state, e, Serialization::Midi::annotation)
+//     {
+//         this->annotationsSequence->checkoutEvent<AnnotationEvent>(e);
+//     }
 
-    this->annotationsSequence->updateBeatRange(false);
-}
+//     this->annotationsSequence->updateBeatRange(false);
+// }
 
-ValueTree ProjectTimeline::serializeTimeSignaturesDelta() const
-{
-    ValueTree tree(Serialization::VCS::ProjectTimelineDeltas::timeSignaturesAdded);
+// ValueTree ProjectTimeline::serializeTimeSignaturesDelta() const
+// {
+//     ValueTree tree(Serialization::VCS::ProjectTimelineDeltas::timeSignaturesAdded);
 
-    for (int i = 0; i < this->timeSignaturesSequence->size(); ++i)
-    {
-        const MidiEvent *event = this->timeSignaturesSequence->getUnchecked(i);
-        tree.appendChild(event->serialize(), nullptr);
-    }
+//     for (int i = 0; i < this->timeSignaturesSequence->size(); ++i)
+//     {
+//         const MidiEvent *event = this->timeSignaturesSequence->getUnchecked(i);
+//         tree.appendChild(event->serialize(), nullptr);
+//     }
     
-    return tree;
-}
+//     return tree;
+// }
 
-void ProjectTimeline::resetTimeSignaturesDelta(const ValueTree &state)
-{
-    jassert(state.hasType(Serialization::VCS::ProjectTimelineDeltas::timeSignaturesAdded));
-    this->timeSignaturesSequence->reset();
+// void ProjectTimeline::resetTimeSignaturesDelta(const ValueTree &state)
+// {
+//     jassert(state.hasType(Serialization::VCS::ProjectTimelineDeltas::timeSignaturesAdded));
+//     this->timeSignaturesSequence->reset();
     
-    forEachValueTreeChildWithType(state, e, Serialization::Midi::timeSignature)
-    {
-        this->timeSignaturesSequence->checkoutEvent<TimeSignatureEvent>(e);
-    }
+//     forEachValueTreeChildWithType(state, e, Serialization::Midi::timeSignature)
+//     {
+//         this->timeSignaturesSequence->checkoutEvent<TimeSignatureEvent>(e);
+//     }
 
-    this->timeSignaturesSequence->updateBeatRange(false);
-}
+//     this->timeSignaturesSequence->updateBeatRange(false);
+// }
 
-ValueTree ProjectTimeline::serializeKeySignaturesDelta() const
-{
-    ValueTree tree(Serialization::VCS::ProjectTimelineDeltas::keySignaturesAdded);
+// ValueTree ProjectTimeline::serializeKeySignaturesDelta() const
+// {
+//     ValueTree tree(Serialization::VCS::ProjectTimelineDeltas::keySignaturesAdded);
 
-    for (int i = 0; i < this->keySignaturesSequence->size(); ++i)
-    {
-        const MidiEvent *event = this->keySignaturesSequence->getUnchecked(i);
-        tree.appendChild(event->serialize(), nullptr);
-    }
+//     for (int i = 0; i < this->keySignaturesSequence->size(); ++i)
+//     {
+//         const MidiEvent *event = this->keySignaturesSequence->getUnchecked(i);
+//         tree.appendChild(event->serialize(), nullptr);
+//     }
 
-    return tree;
-}
+//     return tree;
+// }
 
-void ProjectTimeline::resetKeySignaturesDelta(const ValueTree &state)
-{
-    jassert(state.hasType(Serialization::VCS::ProjectTimelineDeltas::keySignaturesAdded));
-    this->keySignaturesSequence->reset();
+// void ProjectTimeline::resetKeySignaturesDelta(const ValueTree &state)
+// {
+//     jassert(state.hasType(Serialization::VCS::ProjectTimelineDeltas::keySignaturesAdded));
+//     this->keySignaturesSequence->reset();
 
-    forEachValueTreeChildWithType(state, e, Serialization::Midi::keySignature)
-    {
-        this->keySignaturesSequence->checkoutEvent<KeySignatureEvent>(e);
-    }
+//     forEachValueTreeChildWithType(state, e, Serialization::Midi::keySignature)
+//     {
+//         this->keySignaturesSequence->checkoutEvent<KeySignatureEvent>(e);
+//     }
 
-    this->keySignaturesSequence->updateBeatRange(false);
-}
+//     this->keySignaturesSequence->updateBeatRange(false);
+// }

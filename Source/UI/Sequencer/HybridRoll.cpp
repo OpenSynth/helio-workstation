@@ -1173,12 +1173,12 @@ void HybridRoll::handleCommandMessage(int commandId)
         App::Workspace().getAudioCore().unmute();
         break;
     case CommandIDs::VersionControlToggleQuickStash:
-        if (auto vcs = this->project.findChildOfType<VersionControlTreeItem>())
-        {
-            this->deselectAll(); // a couple of hacks, instead will need to improve event system
-            this->getTransport().stopPlayback(); // with a pre-reset callback or so
-            vcs->toggleQuickStash();
-        }
+        // if (auto vcs = this->project.findChildOfType<VersionControlTreeItem>())
+        // {
+        //     this->deselectAll(); // a couple of hacks, instead will need to improve event system
+        //     this->getTransport().stopPlayback(); // with a pre-reset callback or so
+        //     vcs->toggleQuickStash();
+        // }
         break;
     case CommandIDs::AddAnnotation:
         if (AnnotationsSequence *sequence = dynamic_cast<AnnotationsSequence *>

@@ -87,6 +87,7 @@ void MidiTrackTreeItem::importMidi(const MidiMessageSequence &sequence, short ti
 // VCS::TrackedItem
 //===----------------------------------------------------------------------===//
 
+/*
 String MidiTrackTreeItem::getVCSName() const
 {
     return this->getXPath();
@@ -120,6 +121,7 @@ void MidiTrackTreeItem::resetClipsDelta(const ValueTree &state)
         pattern->silentImport(c);
     }
 }
+*/
 
 //===----------------------------------------------------------------------===//
 // MidiTrack

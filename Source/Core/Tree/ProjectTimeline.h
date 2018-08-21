@@ -25,7 +25,7 @@ class ProjectTreeItem;
 
 class ProjectTimeline :
     public ProjectEventDispatcher,
-    public VCS::TrackedItem,
+    //public VCS::TrackedItem,
     public Serializable
 {
 public:
@@ -41,12 +41,12 @@ public:
     // VCS::TrackedItem
     //===------------------------------------------------------------------===//
 
-    String getVCSName() const override;
-    int getNumDeltas() const override;
-    VCS::Delta *getDelta(int index) const override;
-    ValueTree serializeDeltaData(int deltaIndex) const override;
-    VCS::DiffLogic *getDiffLogic() const override;
-    void resetStateTo(const VCS::TrackedItem &newState) override;
+    //String getVCSName() const override;
+    //int getNumDeltas() const override;
+    //VCS::Delta *getDelta(int index) const override;
+    //ValueTree serializeDeltaData(int deltaIndex) const override;
+    //VCS::DiffLogic *getDiffLogic() const override;
+    //void resetStateTo(const VCS::TrackedItem &newState) override;
         
     //===------------------------------------------------------------------===//
     // ProjectEventDispatcher
@@ -79,20 +79,20 @@ public:
     // Deltas
     //===------------------------------------------------------------------===//
 
-    ValueTree serializeAnnotationsDelta() const;
-    void resetAnnotationsDelta(const ValueTree &state);
+    //ValueTree serializeAnnotationsDelta() const;
+    //void resetAnnotationsDelta(const ValueTree &state);
 
-    ValueTree serializeTimeSignaturesDelta() const;
-    void resetTimeSignaturesDelta(const ValueTree &state);
-    
-    ValueTree serializeKeySignaturesDelta() const;
-    void resetKeySignaturesDelta(const ValueTree &state);
+    //ValueTree serializeTimeSignaturesDelta() const;
+    //void resetTimeSignaturesDelta(const ValueTree &state);
+    //
+    //ValueTree serializeKeySignaturesDelta() const;
+    //void resetKeySignaturesDelta(const ValueTree &state);
 
 private:
 
-    ScopedPointer<VCS::DiffLogic> vcsDiffLogic;
+    //ScopedPointer<VCS::DiffLogic> vcsDiffLogic;
 
-    OwnedArray<VCS::Delta> deltas;
+    //OwnedArray<VCS::Delta> deltas;
     
     ProjectTreeItem &project;
     

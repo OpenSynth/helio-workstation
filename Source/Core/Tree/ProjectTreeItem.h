@@ -48,9 +48,9 @@ class Clip;
 class ProjectTreeItem final :
     public TreeItem,
     public DocumentOwner,
-    public MidiTrackSource,
-    public VCS::TrackedItemsSource,  // vcs stuff
-    public ChangeListener // subscribed to VersionControl
+    public MidiTrackSource//,
+    //public VCS::TrackedItemsSource,  // vcs stuff
+    //public ChangeListener // subscribed to VersionControl
 {
 public:
 
@@ -162,19 +162,19 @@ public:
     // VCS::TrackedItemsSource
     //===------------------------------------------------------------------===//
 
-    String getVCSName() const override;
+    /*String getVCSName() const override;
     int getNumTrackedItems() override;
     VCS::TrackedItem *getTrackedItem(int index) override;
     VCS::TrackedItem *initTrackedItem(const Identifier &type,
         const Uuid &id, const VCS::TrackedItem &newState) override;
     bool deleteTrackedItem(VCS::TrackedItem *item) override;
-    void onResetState() override;
+    void onResetState() override;*/
 
     //===------------------------------------------------------------------===//
     // ChangeListener
     //===------------------------------------------------------------------===//
 
-    void changeListenerCallback(ChangeBroadcaster *source) override;
+    // void changeListenerCallback(ChangeBroadcaster *source) override;
 
 protected:
 
@@ -223,7 +223,7 @@ private:
 private:
 
     ReadWriteLock vcsInfoLock;
-    Array<const VCS::TrackedItem *> vcsItems;
+    //Array<const VCS::TrackedItem *> vcsItems;
 
     ScopedPointer<UndoStack> undoStack;
 

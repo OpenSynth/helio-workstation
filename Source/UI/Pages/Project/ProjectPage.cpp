@@ -382,10 +382,10 @@ void ProjectPage::updateContent()
     this->locationText->setText(this->project.getDocument()->getFullPath(), dontSendNotification);
     this->contentStatsText->setText(this->project.getStats(), dontSendNotification);
 
-    if (VersionControlTreeItem *vcti = this->project.findChildOfType<VersionControlTreeItem>())
-    {
-        this->vcsStatsText->setText(vcti->getStatsString(), dontSendNotification);
-    }
+    //if (VersionControlTreeItem *vcti = this->project.findChildOfType<VersionControlTreeItem>())
+    //{
+    //    this->vcsStatsText->setText(vcti->getStatsString(), dontSendNotification);
+    //}
 }
 
 static String getTimeString(const RelativeTime &time)
