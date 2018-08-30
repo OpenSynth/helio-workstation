@@ -80,8 +80,8 @@ private:
     UniquePointer<Label> locationText;
     UniquePointer<Label> contentStatsLabel;
     UniquePointer<Label> contentStatsText;
-    UniquePointer<Label> vcsStatsLabel;
-    UniquePointer<Label> vcsStatsText;
+    //UniquePointer<Label> vcsStatsLabel;
+    //UniquePointer<Label> vcsStatsText;
     UniquePointer<Label> startTimeLabel;
     UniquePointer<Label> startTimeText;
     UniquePointer<Label> lengthLabel;

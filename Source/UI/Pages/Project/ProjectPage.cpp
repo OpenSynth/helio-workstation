@@ -111,19 +111,19 @@ ProjectPage::ProjectPage(ProjectTreeItem &parentProject)
     contentStatsText->setJustificationType(Justification::topLeft);
     contentStatsText->setEditable(false, false, true);
 
-    this->vcsStatsLabel.reset(new Label(String(),
-                                         TRANS("page::project::stats::vcs")));
-    this->addAndMakeVisible(vcsStatsLabel.get());
-    this->vcsStatsLabel->setFont(Font (Font::getDefaultSerifFontName(), 16.00f, Font::plain).withTypefaceStyle ("Regular"));
-    vcsStatsLabel->setJustificationType(Justification::topRight);
-    vcsStatsLabel->setEditable(false, false, true);
+    //this->vcsStatsLabel.reset(new Label(String(),
+    //                                     TRANS("page::project::stats::vcs")));
+    //this->addAndMakeVisible(vcsStatsLabel.get());
+    //this->vcsStatsLabel->setFont(Font (Font::getDefaultSerifFontName(), 16.00f, Font::plain).withTypefaceStyle ("Regular"));
+    //vcsStatsLabel->setJustificationType(Justification::topRight);
+    //vcsStatsLabel->setEditable(false, false, true);
 
-    this->vcsStatsText.reset(new Label(String(),
-                                        TRANS("...")));
-    this->addAndMakeVisible(vcsStatsText.get());
-    this->vcsStatsText->setFont(Font (Font::getDefaultSerifFontName(), 16.00f, Font::plain).withTypefaceStyle ("Regular"));
-    vcsStatsText->setJustificationType(Justification::topLeft);
-    vcsStatsText->setEditable(false, false, true);
+    //this->vcsStatsText.reset(new Label(String(),
+    //                                    TRANS("...")));
+    //this->addAndMakeVisible(vcsStatsText.get());
+    //this->vcsStatsText->setFont(Font (Font::getDefaultSerifFontName(), 16.00f, Font::plain).withTypefaceStyle ("Regular"));
+    //vcsStatsText->setJustificationType(Justification::topLeft);
+    //vcsStatsText->setEditable(false, false, true);
 
     this->startTimeLabel.reset(new Label(String(),
                                           TRANS("page::project::startdate")));
@@ -231,8 +231,8 @@ ProjectPage::~ProjectPage()
     locationText = nullptr;
     contentStatsLabel = nullptr;
     contentStatsText = nullptr;
-    vcsStatsLabel = nullptr;
-    vcsStatsText = nullptr;
+    //vcsStatsLabel = nullptr;
+    //vcsStatsText = nullptr;
     startTimeLabel = nullptr;
     startTimeText = nullptr;
     lengthLabel = nullptr;
@@ -273,8 +273,8 @@ void ProjectPage::resized()
     locationText->setBounds((getWidth() / 2) + -100, (proportionOfHeight (0.0751f) + 310) + 138, 400, 96);
     contentStatsLabel->setBounds((getWidth() / 2) + -104 - 300, (proportionOfHeight (0.0751f) + 310) + 106, 300, 32);
     contentStatsText->setBounds((getWidth() / 2) + -100, (proportionOfHeight (0.0751f) + 310) + 106, 400, 32);
-    vcsStatsLabel->setBounds((getWidth() / 2) + -104 - 300, (proportionOfHeight (0.0751f) + 310) + 76, 300, 32);
-    vcsStatsText->setBounds((getWidth() / 2) + -100, (proportionOfHeight (0.0751f) + 310) + 76, 400, 32);
+    //vcsStatsLabel->setBounds((getWidth() / 2) + -104 - 300, (proportionOfHeight (0.0751f) + 310) + 76, 300, 32);
+    //vcsStatsText->setBounds((getWidth() / 2) + -100, (proportionOfHeight (0.0751f) + 310) + 76, 400, 32);
     startTimeLabel->setBounds((getWidth() / 2) + -104 - 300, (proportionOfHeight (0.0751f) + 310) + 46, 300, 32);
     startTimeText->setBounds((getWidth() / 2) + -100, (proportionOfHeight (0.0751f) + 310) + 46, 400, 32);
     lengthLabel->setBounds((getWidth() / 2) + -104 - 300, (proportionOfHeight (0.0751f) + 310) + 16, 300, 32);
