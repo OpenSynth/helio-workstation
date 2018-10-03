@@ -165,7 +165,7 @@ void InstrumentEditorConnector::mouseDrag(const MouseEvent &e)
         double distanceFromStart = 0.0, distanceFromEnd = 0.0;
         this->getDistancesFromEnds(e.x, e.y, distanceFromStart, distanceFromEnd);
         const bool isNearerSource = (distanceFromStart < distanceFromEnd);
-        const AudioProcessorGraph::NodeID nodeIdZero;
+        const AudioProcessorGraph::NodeID nodeIdZero(0);
 
         this->getGraphPanel()->beginConnectorDrag(
             isNearerSource ? nodeIdZero : this->connection.source.nodeID,

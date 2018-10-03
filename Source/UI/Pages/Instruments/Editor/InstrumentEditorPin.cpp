@@ -50,8 +50,8 @@ void InstrumentEditorPin::paint(Graphics &g)
 
 void InstrumentEditorPin::mouseDown(const MouseEvent &e)
 {
-    const AudioProcessorGraph::NodeID sourceId(isInput ? 0 : nodeID.uid);
-    const AudioProcessorGraph::NodeID destinationId(isInput ? nodeID.uid : 0);
+    const AudioProcessorGraph::NodeID sourceId(isInput ? 0 : nodeID);
+    const AudioProcessorGraph::NodeID destinationId(isInput ? nodeID : 0);
     this->getParentEditor()->beginConnectorDrag(sourceId, index, destinationId, index, e);
 }
 

@@ -661,12 +661,11 @@ void NoteComponent::paint(Graphics &g)
     g.fillRect(jmax(x1 + 0.5f, x2 - 0.75f), y1 + h / 6.f, 0.5f, h / 1.5f);
     g.fillRect(x1 + 0.75f, y1 + 1.f, jmax(0.f, w - 1.25f), h - 2.f);
 
-//#ifdef DEBUG
-//    g.setColour(Colours::black);
-//    g.drawText(this->note.getId() + " " + this->clip.getId(),
-//        this->getLocalBounds().translated(5, 0),
-//        Justification::centredLeft, false);
-//#else
+    g.setColour(Colours::white);
+    g.drawText(this->note.getId() + " " + this->note.getLyric(),
+        this->getLocalBounds().translated(5, 0),
+        Justification::centredLeft, false);
+
     const float sx = x1 + 2.f;
     const float sy = float(this->getHeight() - 4);
     const float sw1 = jmax(0.f, (w - 4.f)) * this->note.getVelocity();
@@ -674,7 +673,6 @@ void NoteComponent::paint(Graphics &g)
     g.setColour(this->colourVolume);
     g.fillRect(sx, sy, sw1, 3.f);
     g.fillRect(sx, sy, sw2, 3.f);
-//#endif
 }
 
 //===----------------------------------------------------------------------===//

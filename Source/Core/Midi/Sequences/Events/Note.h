@@ -53,6 +53,7 @@ public:
     Note withDeltaLength(float deltaLength) const noexcept;
     Note withVelocity(float newVelocity) const noexcept;
     Note withParameters(const ValueTree &parameters) const noexcept;
+	Note withLyric(String lyric) const noexcept;
 
     //===------------------------------------------------------------------===//
     // Accessors
@@ -61,6 +62,7 @@ public:
     int getKey() const noexcept;
     float getLength() const noexcept;
     float getVelocity() const noexcept;
+	String getLyric() const noexcept;
 
     //===------------------------------------------------------------------===//
     // Serializable
@@ -93,6 +95,7 @@ protected:
     Key key;
     float length;
     float velocity;
+	String lyric;
 
 private:
 
