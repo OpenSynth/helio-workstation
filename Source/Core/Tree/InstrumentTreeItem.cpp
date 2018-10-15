@@ -114,7 +114,7 @@ Array<uint32> InstrumentTreeItem::getInstrumentNodeIds() const
 
     for (int i = 0; i < this->instrument->getNumNodes(); ++i)
     {
-        result.add(this->instrument->getNode(i)->nodeID);
+        result.add(this->instrument->getNode(i)->nodeID.uid);
     }
 
     return result;

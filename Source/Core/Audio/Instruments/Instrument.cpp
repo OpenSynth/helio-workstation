@@ -447,9 +447,9 @@ ValueTree Instrument::serialize() const
     for (const auto &c : this->getConnections())
     {
         ValueTree e(Audio::connection);
-        e.setProperty(Audio::sourceNodeId, static_cast<int>(c.source.nodeID), nullptr);
+        e.setProperty(Audio::sourceNodeId, static_cast<int>(c.source.nodeID.uid), nullptr);
         e.setProperty(Audio::sourceChannel, c.source.channelIndex, nullptr);
-        e.setProperty(Audio::destinationNodeId, static_cast<int>(c.destination.nodeID), nullptr);
+        e.setProperty(Audio::destinationNodeId, static_cast<int>(c.destination.nodeID.uid), nullptr);
         e.setProperty(Audio::destinationChannel, c.destination.channelIndex, nullptr);
         tree.appendChild(e, nullptr);
     }
@@ -522,7 +522,7 @@ ValueTree Instrument::serializeNode(AudioProcessorGraph::Node::Ptr node) const
     if (AudioPluginInstance *plugin = dynamic_cast<AudioPluginInstance *>(node->getProcessor()))
     {
         ValueTree tree(Audio::node);
-        tree.setProperty(Audio::nodeId, static_cast<int>(node->nodeID), nullptr);
+        tree.setProperty(Audio::nodeId, static_cast<int>(node->nodeID.uid), nullptr);
         tree.setProperty(Audio::nodeHash, node->properties[Audio::nodeHash].toString(), nullptr);
         tree.setProperty(UI::positionX, node->properties[UI::positionX].toString(), nullptr);
         tree.setProperty(UI::positionY, node->properties[UI::positionY].toString(), nullptr);
