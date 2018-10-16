@@ -53,8 +53,13 @@ NoteComponent::NoteComponent(PianoRoll &editor, const Note &event, const Clip &c
     this->setWantsKeyboardFocus(false);
     this->setMouseClickGrabsKeyboardFocus(false);
     this->setFloatBounds(this->getRoll().getEventBounds(this));
-}
 
+    label.setText(event.getLyric(), NotificationType::dontSendNotification);
+    label.setEditable(false, true, false);
+    label.addListener(this);
+    label.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&label);
+}
 PianoRoll &NoteComponent::getRoll() const noexcept
 {
     return static_cast<PianoRoll &>(this->roll);
@@ -164,6 +169,14 @@ void NoteComponent::mouseMove(const MouseEvent &e)
 #define forEachSelectedNote(lasso, child) \
     for (int _i = 0; _i < lasso.getNumSelected(); _i++) \
         if (auto *child = dynamic_cast<NoteComponent *>(lasso.getSelectedItem(_i)))
+
+void NoteComponent::labelTextChanged(Label *labelThatHasChanged)
+{
+    if (labelThatHasChanged == &label)
+    {
+        DBG("changed");
+    }
+}
 
 void NoteComponent::mouseDown(const MouseEvent &e)
 {
@@ -633,7 +646,10 @@ void NoteComponent::mouseUp(const MouseEvent &e)
 }
 
 // This action is still free - TODO something useful:
-void NoteComponent::mouseDoubleClick(const MouseEvent &e) {}
+void NoteComponent::mouseDoubleClick(const MouseEvent &e)
+{
+    label.mouseDoubleClick(e);
+}
 
 //===----------------------------------------------------------------------===//
 // Notes painting
@@ -661,11 +677,6 @@ void NoteComponent::paint(Graphics &g)
     g.fillRect(jmax(x1 + 0.5f, x2 - 0.75f), y1 + h / 6.f, 0.5f, h / 1.5f);
     g.fillRect(x1 + 0.75f, y1 + 1.f, jmax(0.f, w - 1.25f), h - 2.f);
 
-    g.setColour(Colours::white);
-    g.drawText(this->note.getId() + " " + this->note.getLyric(),
-        this->getLocalBounds().translated(5, 0),
-        Justification::centredLeft, false);
-
     const float sx = x1 + 2.f;
     const float sy = float(this->getHeight() - 4);
     const float sw1 = jmax(0.f, (w - 4.f)) * this->note.getVelocity();
@@ -673,6 +684,13 @@ void NoteComponent::paint(Graphics &g)
     g.setColour(this->colourVolume);
     g.fillRect(sx, sy, sw1, 3.f);
     g.fillRect(sx, sy, sw2, 3.f);
+}
+
+void NoteComponent::resized()
+{
+    auto bound = getLocalBounds().withTrimmedLeft(5);
+    label.setBounds(bound);
+    label.setSize(bound.getWidth(), bound.getHeight());
 }
 
 //===----------------------------------------------------------------------===//
