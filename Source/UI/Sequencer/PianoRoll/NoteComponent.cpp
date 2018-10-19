@@ -174,7 +174,10 @@ void NoteComponent::labelTextChanged(Label *labelThatHasChanged)
 {
     if (labelThatHasChanged == &label)
     {
-        DBG("changed");
+        Array<Note> groupBefore, groupAfter;
+        groupBefore.add(this->getNote());
+        groupAfter.add(this->getNote().withLyric(label.getText()));
+        static_cast<PianoSequence *>(this->note.getSequence())->changeGroup(groupBefore, groupAfter, true);
     }
 }
 
