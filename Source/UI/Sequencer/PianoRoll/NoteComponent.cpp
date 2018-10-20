@@ -81,6 +81,14 @@ void NoteComponent::updateColours()
     this->colourLighter = this->colour.brighter(0.125f).withMultipliedAlpha(1.45f);
     this->colourDarker = this->colour.darker(0.175f).withMultipliedAlpha(1.45f);
     this->colourVolume = this->colour.darker(0.75f).withAlpha(ghost ? 0.f : 0.45f);
+
+    double colorBrightness = this->colour.getBrightness();
+    double textBrightness = (0.8 / (1 + exp(3 * (2 * colorBrightness - 1)))) + 0.1;
+    if (colorBrightness < 0.5)
+        textBrightness = std::max(textBrightness, 0.6);
+    else
+        textBrightness = std::min(textBrightness, 0.4);
+    this->label.setColour(Label::ColourIds::textColourId, this->colour.withBrightness(textBrightness));
 }
 
 bool NoteComponent::canResize() const noexcept
@@ -651,7 +659,8 @@ void NoteComponent::mouseUp(const MouseEvent &e)
 // This action is still free - TODO something useful:
 void NoteComponent::mouseDoubleClick(const MouseEvent &e)
 {
-    label.mouseDoubleClick(e);
+    if (!this->ghostMode && this->activeState)
+        label.mouseDoubleClick(e);
 }
 
 //===----------------------------------------------------------------------===//
