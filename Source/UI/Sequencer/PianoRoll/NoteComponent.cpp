@@ -82,12 +82,12 @@ void NoteComponent::updateColours()
     this->colourDarker = this->colour.darker(0.175f).withMultipliedAlpha(1.45f);
     this->colourVolume = this->colour.darker(0.75f).withAlpha(ghost ? 0.f : 0.45f);
 
-    double colorBrightness = this->colour.getBrightness();
-    double textBrightness = (0.8 / (1 + exp(3 * (2 * colorBrightness - 1)))) + 0.1;
+    float colorBrightness = this->colour.getBrightness();
+    float textBrightness = (0.8 / (1 + expf(3 * (2 * colorBrightness - 1)))) + 0.1;
     if (colorBrightness < 0.5)
-        textBrightness = std::max(textBrightness, 0.6);
+        textBrightness = std::max(textBrightness, 0.6f);
     else
-        textBrightness = std::min(textBrightness, 0.4);
+        textBrightness = std::min(textBrightness, 0.4f);
     this->label.setColour(Label::ColourIds::textColourId, this->colour.withBrightness(textBrightness));
 }
 
