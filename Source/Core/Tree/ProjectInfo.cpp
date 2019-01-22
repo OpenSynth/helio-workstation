@@ -18,7 +18,7 @@
 #include "Common.h"
 #include "ProjectInfo.h"
 #include "ProjectTreeItem.h"
-#include "Delta.h"
+#include "SerializationKeys.h"
 
 // using namespace Serialization::VCS;
 

@@ -20,8 +20,6 @@
 #include "TreeItem.h"
 #include "ProjectEventDispatcher.h"
 #include "MidiTrack.h"
-#include "TrackedItem.h"
-#include "Delta.h"
 
 class Pattern;
 class MidiSequence;

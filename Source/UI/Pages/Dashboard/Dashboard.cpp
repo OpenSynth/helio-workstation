@@ -33,9 +33,7 @@
 #include "LogoFader.h"
 #include "App.h"
 #include "Workspace.h"
-#include "SessionService.h"
 #include "IconComponent.h"
-#include "UserProfile.h"
 #include "CommandIDs.h"
 //[/MiscUserDefs]
 
@@ -86,14 +84,14 @@ Dashboard::Dashboard(MainLayout &workspaceRef)
 
     //[Constructor]
     this->updateLoginAndProfileButtons();
-    App::Helio().getSessionService()->addChangeListener(this);
+    //App::Helio().getSessionService()->addChangeListener(this);
     //[/Constructor]
 }
 
 Dashboard::~Dashboard()
 {
     //[Destructor_pre]
-    App::Helio().getSessionService()->removeChangeListener(this);
+    //App::Helio().getSessionService()->removeChangeListener(this);
     //[/Destructor_pre]
 
     skew = nullptr;
@@ -154,13 +152,13 @@ void Dashboard::changeListenerCallback(ChangeBroadcaster *source)
 
 void Dashboard::updateLoginAndProfileButtons()
 {
-    const bool loggedIn = App::Helio().getSessionService()->isLoggedIn();
-    this->loginButton->setVisible(!loggedIn);
-    this->userProfile->setVisible(loggedIn);
-    if (loggedIn)
-    {
-        this->userProfile->updateProfileInfo();
-    }
+    //const bool loggedIn = App::Helio().getSessionService()->isLoggedIn();
+    //this->loginButton->setVisible(!loggedIn);
+    //this->userProfile->setVisible(loggedIn);
+    //if (loggedIn)
+    //{
+    //    this->userProfile->updateProfileInfo();
+    //}
 }
 //[/MiscUserCode]
 

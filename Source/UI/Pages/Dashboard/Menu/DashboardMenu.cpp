@@ -25,7 +25,6 @@
 #include "RecentProjectRow.h"
 #include "App.h"
 #include "MainLayout.h"
-#include "SessionService.h"
 #include "ProgressTooltip.h"
 #include "SuccessTooltip.h"
 #include "FailTooltip.h"

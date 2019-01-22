@@ -17,7 +17,6 @@
 
 #pragma once
 
-#include "AutomationTrackDiffLogic.h"
 #include "MidiTrackTreeItem.h"
 
 class AutomationTrackTreeItem final : public MidiTrackTreeItem

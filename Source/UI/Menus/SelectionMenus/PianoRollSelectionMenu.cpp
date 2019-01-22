@@ -17,6 +17,7 @@
 
 #include "Common.h"
 #include "PianoRollSelectionMenu.h"
+#include "SerializationKeys.h"
 
 #include "Lasso.h"
 #include "SequencerOperations.h"

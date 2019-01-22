@@ -17,6 +17,7 @@
 
 #include "Common.h"
 #include "RootTreeItem.h"
+#include "SerializationKeys.h"
 
 #include "TreeItemChildrenSerializer.h"
 #include "ProjectTreeItem.h"

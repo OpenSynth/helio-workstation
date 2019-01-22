@@ -27,6 +27,7 @@
 #include "VersionControlTreeItem.h"
 #include "PatternEditorTreeItem.h"
 #include "SettingsTreeItem.h"
+#include "SerializationKeys.h"
 
 void TreeItemChildrenSerializer::serializeChildren(const TreeItem &parentItem, ValueTree &parent)
 {

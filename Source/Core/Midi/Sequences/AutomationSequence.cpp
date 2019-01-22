@@ -18,6 +18,7 @@
 #include "Common.h"
 #include "AutomationSequence.h"
 #include "AutomationEventActions.h"
+#include "SerializationKeys.h"
 
 #include "ProjectTreeItem.h"
 #include "ProjectListener.h"

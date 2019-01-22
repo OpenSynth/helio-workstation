@@ -17,7 +17,6 @@
 
 #pragma once
 
-#include "PianoTrackDiffLogic.h"
 #include "MidiTrackTreeItem.h"
 
 class PianoTrackTreeItem final : public MidiTrackTreeItem

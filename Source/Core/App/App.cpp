@@ -18,8 +18,6 @@
 #include "Common.h"
 #include "App.h"
 #include "AudioCore.h"
-#include "SessionService.h"
-#include "UpdatesService.h"
 
 #include "TranslationsManager.h"
 #include "ArpeggiatorsManager.h"
@@ -272,8 +270,8 @@ void App::initialise(const String &commandLine)
         }
 
         // Prepare backend APIs communication services
-        this->sessionService = new SessionService();
-        this->updatesService = new UpdatesService();
+        //this->sessionService = new SessionService();
+        //this->updatesService = new UpdatesService();
 
         this->workspace = new class Workspace();
         this->window = new MainWindow();
@@ -304,9 +302,6 @@ void App::shutdown()
 
         this->window = nullptr;
         this->workspace = nullptr;
-
-        this->updatesService = nullptr;
-        this->sessionService = nullptr;
 
         this->theme = nullptr;
         this->config = nullptr;
@@ -410,15 +405,6 @@ void App::resumed()
 #if JUCE_ANDROID
     this->window->attachOpenGLContext();
 #endif
-}
-
-//===----------------------------------------------------------------------===//
-// Accessors
-//===----------------------------------------------------------------------===//
-
-SessionService *App::getSessionService() const noexcept
-{
-    return this->sessionService;
 }
 
 HelioTheme *App::getTheme() const noexcept

@@ -24,7 +24,6 @@
 #include "AutomationTrackTreeItem.h"
 #include "PatternEditorTreeItem.h"
 #include "VersionControlTreeItem.h"
-#include "VersionControl.h"
 
 #include "PianoTrackActions.h"
 #include "AutomationTrackActions.h"
@@ -40,7 +39,6 @@
 #include "Pattern.h"
 #include "MidiTrack.h"
 #include "MidiEvent.h"
-#include "TrackedItem.h"
 #include "RecentFilesList.h"
 #include "HybridRoll.h"
 #include "UndoStack.h"

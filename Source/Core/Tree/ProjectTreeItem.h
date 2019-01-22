@@ -39,7 +39,6 @@ class Clip;
 #include "TreeItem.h"
 #include "DocumentOwner.h"
 #include "Transport.h"
-#include "TrackedItemsSource.h"
 #include "ProjectSequencesWrapper.h"
 #include "HybridRollEditMode.h"
 #include "MidiSequence.h"

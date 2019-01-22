@@ -23,6 +23,7 @@
 #include "ProjectTreeItem.h"
 #include "Pattern.h"
 #include "Icons.h"
+#include "SerializationKeys.h"
 
 // A simple wrappers around the sequences
 // We don't need any patterns here

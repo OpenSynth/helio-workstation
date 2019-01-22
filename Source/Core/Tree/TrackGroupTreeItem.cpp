@@ -18,6 +18,7 @@
 #include "Common.h"
 #include "TrackGroupTreeItem.h"
 #include "ProjectTreeItem.h"
+#include "SerializationKeys.h"
 
 #include "TreeItemChildrenSerializer.h"
 #include "PianoTrackTreeItem.h"

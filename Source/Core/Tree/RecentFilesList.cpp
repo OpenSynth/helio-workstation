@@ -17,19 +17,18 @@
 
 #include "Common.h"
 #include "RecentFilesList.h"
-#include "SessionService.h"
 #include "SerializationKeys.h"
 #include "Config.h"
 #include "App.h"
 
 RecentFilesList::RecentFilesList()
 {
-    App::Helio().getSessionService()->addChangeListener(this);
+    //App::Helio().getSessionService()->addChangeListener(this);
 }
 
 RecentFilesList::~RecentFilesList()
 {
-    App::Helio().getSessionService()->removeChangeListener(this);
+    //App::Helio().getSessionService()->removeChangeListener(this);
 }
 
 void RecentFilesList::onProjectStateChanged(const String &title, const String &path,

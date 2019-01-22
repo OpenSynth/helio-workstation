@@ -19,10 +19,6 @@
 
 class ProjectTreeItem;
 
-#include "ProjectInfoDiffLogic.h"
-#include "TrackedItem.h"
-#include "Delta.h"
-
 class ProjectInfo :
     public Serializable//,
     //public VCS::TrackedItem

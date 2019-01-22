@@ -23,8 +23,6 @@
 
 //[MiscUserDefs]
 #include "App.h"
-#include "SessionService.h"
-#include "UserProfile.h"
 //[/MiscUserDefs]
 
 UserProfileComponent::UserProfileComponent()
@@ -100,15 +98,15 @@ void UserProfileComponent::resized()
 //[MiscUserCode]
 void UserProfileComponent::updateProfileInfo()
 {
-    const auto *session = App::Helio().getSessionService();
-    if (session->isLoggedIn())
-    {
-        this->avatar->setIconImage(session->getUserProfile().getAvatar());
-        this->nameLabel->setText("/" + session->getUserProfile().getLogin(), dontSendNotification);
-        this->clickHandler->onClick = []() {
-            URL(App::Helio().getSessionService()->getUserProfile().getProfileUrl()).launchInDefaultBrowser();
-        };
-    }
+    //const auto *session = App::Helio().getSessionService();
+    //if (session->isLoggedIn())
+    //{
+    //    this->avatar->setIconImage(session->getUserProfile().getAvatar());
+    //    this->nameLabel->setText("/" + session->getUserProfile().getLogin(), dontSendNotification);
+    //    this->clickHandler->onClick = []() {
+    //        URL(App::Helio().getSessionService()->getUserProfile().getProfileUrl()).launchInDefaultBrowser();
+    //    };
+    //}
 }
 //[/MiscUserCode]
 

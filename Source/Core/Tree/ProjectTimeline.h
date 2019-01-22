@@ -20,7 +20,6 @@
 class ProjectTreeItem;
 
 #include "MidiTrack.h"
-#include "ProjectTimelineDiffLogic.h"
 #include "ProjectEventDispatcher.h"
 
 class ProjectTimeline :

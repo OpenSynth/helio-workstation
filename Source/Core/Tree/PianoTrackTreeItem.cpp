@@ -22,13 +22,11 @@
 #include "TreeItemChildrenSerializer.h"
 #include "Icons.h"
 #include "Pattern.h"
+#include "SerializationKeys.h"
 
 #include "MainLayout.h"
 #include "Instrument.h"
 #include "OrchestraPit.h"
-
-#include "Delta.h"
-#include "PianoTrackDiffLogic.h"
 
 PianoTrackTreeItem::PianoTrackTreeItem(const String &name) :
     MidiTrackTreeItem(name, Serialization::Core::pianoTrack)

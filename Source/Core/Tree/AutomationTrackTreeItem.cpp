@@ -21,6 +21,7 @@
 #include "TreeItemChildrenSerializer.h"
 #include "Icons.h"
 #include "Pattern.h"
+#include "SerializationKeys.h"
 
 AutomationTrackTreeItem::AutomationTrackTreeItem(const String &name) :
     MidiTrackTreeItem(name, Serialization::Core::automationTrack)
